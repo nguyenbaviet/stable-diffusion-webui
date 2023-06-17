@@ -160,12 +160,12 @@ else
     cd "${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
 fi
 
-if [[ -z "${VIRTUAL_ENV}" ]];
-then
-    printf "\n%s\n" "${delimiter}"
-    printf "Create and activate python venv"
-    printf "\n%s\n" "${delimiter}"
-    cd "${install_dir}"/"${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
+# if [[ -z "${VIRTUAL_ENV}" ]];
+# then
+#     printf "\n%s\n" "${delimiter}"
+#     printf "Create and activate python venv"
+#     printf "\n%s\n" "${delimiter}"
+#     cd "${install_dir}"/"${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
     # if [[ ! -d "${venv_dir}" ]]
     # then
     #     "${python_cmd}" -m venv "${venv_dir}"
@@ -182,11 +182,11 @@ then
     #     printf "\n%s\n" "${delimiter}"
     #     exit 1
     # fi
-else
-    printf "\n%s\n" "${delimiter}"
-    printf "python venv already activate: ${VIRTUAL_ENV}"
-    printf "\n%s\n" "${delimiter}"
-fi
+# else
+#     printf "\n%s\n" "${delimiter}"
+#     printf "python venv already activate: ${VIRTUAL_ENV}"
+#     printf "\n%s\n" "${delimiter}"
+# fi
 
 # Try using TCMalloc on Linux
 prepare_tcmalloc() {
@@ -213,5 +213,6 @@ else
     printf "Launching launch.py..."
     printf "\n%s\n" "${delimiter}"
     prepare_tcmalloc
+    printf "python cmd ${python_cmd}"
     exec "${python_cmd}" "${LAUNCH_SCRIPT}" "$@"
 fi
