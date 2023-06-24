@@ -173,10 +173,10 @@ class Api:
         self.router = APIRouter()
         self.app = app
         self.queue_lock = queue_lock
-        service_prefix = 'wedjat-stable-diffusion-server'
+        service_prefix = '/wedjat-stable-diffusion-server'
         api_middleware(self.app)
-        self.app.docs_url = f"/{service_prefix}/docs"
-        self.app.openapi_url = f"/{service_prefix}/openapi.json"
+        self.app.docs_url = f"{service_prefix}/docs"
+        self.app.openapi_url = f"{service_prefix}/openapi.json"
         self.add_api_route(f"{service_prefix}/sdapi/v1/txt2img", self.text2imgapi, methods=["POST"], response_model=models.TextToImageResponse)
         self.add_api_route(f"{service_prefix}/sdapi/v1/img2img", self.img2imgapi, methods=["POST"], response_model=models.ImageToImageResponse)
         self.add_api_route(f"{service_prefix}/sdapi/v1/extra-single-image", self.extras_single_image_api, methods=["POST"], response_model=models.ExtrasSingleImageResponse)
