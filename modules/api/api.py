@@ -9,7 +9,7 @@ from io import BytesIO
 from fastapi import APIRouter, Depends, FastAPI, Request, Response
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.exceptions import HTTPException
-from fastapi.responses import JSONResponse, RedirectResponse
+from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from secrets import compare_digest
 
@@ -175,6 +175,7 @@ class Api:
         self.queue_lock = queue_lock
         service_prefix = 'wedjat-stable-diffusion-server'
         api_middleware(self.app)
+        self.app.docs_url = f"{service_prefix}/docs"
         self.add_api_route(f"{service_prefix}/sdapi/v1/txt2img", self.text2imgapi, methods=["POST"], response_model=models.TextToImageResponse)
         self.add_api_route(f"{service_prefix}/sdapi/v1/img2img", self.img2imgapi, methods=["POST"], response_model=models.ImageToImageResponse)
         self.add_api_route(f"{service_prefix}/sdapi/v1/extra-single-image", self.extras_single_image_api, methods=["POST"], response_model=models.ExtrasSingleImageResponse)
@@ -206,13 +207,10 @@ class Api:
         self.add_api_route(f"{service_prefix}/sdapi/v1/reload-checkpoint", self.reloadapi, methods=["POST"])
         self.add_api_route(f"{service_prefix}/sdapi/v1/scripts", self.get_scripts_list, methods=["GET"], response_model=models.ScriptsList)
         self.add_api_route(f"{service_prefix}/sdapi/v1/script-info", self.get_script_info, methods=["GET"], response_model=List[models.ScriptInfo])
-        self.add_api_route(f"{service_prefix}/docs", self.redirect_docs, methods=["GET"])
 
         self.default_script_arg_txt2img = []
         self.default_script_arg_img2img = []
 
-    def redirect_docs(self):
-        return RedirectResponse('/docs')
 
     def add_api_route(self, path: str, endpoint, **kwargs):
         if shared.cmd_opts.api_auth:
