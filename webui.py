@@ -345,8 +345,8 @@ def create_api(app):
 
 def api_only():
     initialize()
-
-    app = FastAPI()
+    SERVICE_PREFIX = 'wedjat-stable-diffusion-server'
+    app = FastAPI(docs_url=f"/{SERVICE_PREFIX}/docs", openapi_url=f"/{SERVICE_PREFIX}/openapi.json")
     setup_middleware(app)
     api = create_api(app)
 
