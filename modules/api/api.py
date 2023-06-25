@@ -174,7 +174,7 @@ class Api:
         self.app = app
         self.queue_lock = queue_lock
         api_middleware(self.app)
-        SERVICE_PREFIX = 'wedjat-stable-diffusion-server'
+        SERVICE_PREFIX = '/wedjat-stable-diffusion-server'
         self.add_api_route(f"{SERVICE_PREFIX}/sdapi/v1/txt2img", self.text2imgapi, methods=["POST"], response_model=models.TextToImageResponse)
         self.add_api_route(f"{SERVICE_PREFIX}/sdapi/v1/img2img", self.img2imgapi, methods=["POST"], response_model=models.ImageToImageResponse)
         self.add_api_route(f"{SERVICE_PREFIX}/sdapi/v1/extra-single-image", self.extras_single_image_api, methods=["POST"], response_model=models.ExtrasSingleImageResponse)
