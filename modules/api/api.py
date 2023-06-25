@@ -171,9 +171,6 @@ class Api:
                 self.credentials[user] = password
 
         self.router = APIRouter()
-        service_prefix = '/wedjat-stable-diffusion-server'
-        app.docs_url = f"{service_prefix}/docs"
-        app.openapi_url = f"{service_prefix}/openapi.json"
         self.app = app
         self.queue_lock = queue_lock
         api_middleware(self.app)
