@@ -61,7 +61,7 @@ def setUpscalers(req: dict):
 
 
 def decode_base64_to_image(encoding):
-    print(encoding[:100])
+    print('encoding: ', encoding[:100])
     if encoding.startswith("data:image/"):
         encoding = encoding.split(";")[1].split(",")[1]
     try:
@@ -385,9 +385,11 @@ class Api:
         send_images = args.pop('send_images', True)
         args.pop('save_images', None)
 
+        print('before queue lock: ', init_images)
         with self.queue_lock:
             p = StableDiffusionProcessingImg2Img(sd_model=shared.sd_model, **args)
             p.init_images = [decode_base64_to_image(x) for x in init_images]
+            print('after decode: ', p.init_images)
             p.scripts = script_runner
             p.outpath_grids = opts.outdir_img2img_grids
             p.outpath_samples = opts.outdir_img2img_samples
