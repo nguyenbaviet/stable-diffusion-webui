@@ -65,7 +65,7 @@ def decode_base64_to_image(encoding):
         encoding = encoding.split(";")[1].split(",")[1]
     try:
         if isinstance(encoding, str):
-            encoding = encoding.decode()
+            encoding = encoding.encode()
         image = Image.open(BytesIO(base64.b64decode(encoding)))
         return image
     except Exception as e:
