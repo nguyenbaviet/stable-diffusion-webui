@@ -64,9 +64,12 @@ def decode_base64_to_image(encoding):
     if encoding.startswith("data:image/"):
         encoding = encoding.split(";")[1].split(",")[1]
     try:
+        print('Before encode: ', type(encoding))
         if isinstance(encoding, str):
             encoding = encoding.encode()
+        print('Encoding type: ', type(encoding))
         image = Image.open(BytesIO(base64.b64decode(encoding)))
+        print('Image: ', type(image))
         return image
     except Exception as e:
         raise HTTPException(status_code=500, detail="Invalid encoded image") from e
