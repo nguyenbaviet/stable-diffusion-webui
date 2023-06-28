@@ -13,8 +13,8 @@ blobs = bucket.list_blobs(prefix=gcs_model_path)
 print("Start downloading...")
 for blob in blobs:
     filename = blob.name.split("/")[-2:]
-    filename = "/".join(filename)
-    destination_file_path = os.path.join(des_path, filename)
-    os.makedirs(destination_file_path, exist_ok=True)
+    par_dir, filename = filename
+    des_dir = os.path.join(des_path, par_dir)
+    os.makedirs(des_dir, exist_ok=True)
     print(f"downloading {filename}")
-    blob.download_to_filename(destination_file_path)
+    blob.download_to_filename(os.path.join(des_dir, filename))
