@@ -160,7 +160,7 @@ else
     cd "${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
 fi
 ## download checkpoints
-exec "gsutil -m cp -r gs://momovn-models-dev/wedjat/models/stable_diffusion/models ."
+
 
 # if [[ -z "${VIRTUAL_ENV}" ]];
 # then
