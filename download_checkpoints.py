@@ -15,5 +15,6 @@ for blob in blobs:
     filename = blob.name.split("/")[-2:]
     filename = "/".join(filename)
     destination_file_path = os.path.join(des_path, filename)
+    os.makedirs(destination_file_path, exist_ok=True)
     print(f"downloading {filename}")
     blob.download_to_filename(destination_file_path)
