@@ -161,7 +161,7 @@ else
 fi
 # download checkpoint
 pip install google-cloud-storage==2.5.0
-exec "${python_cmd}" "download_checkpoints.py"
+python3 download_checkpoints.py
 
 
 # if [[ -z "${VIRTUAL_ENV}" ]];
