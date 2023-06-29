@@ -159,8 +159,8 @@ else
     "${GIT}" clone https://github.com/nguyenbaviet/stable-diffusion-webui.git "${clone_dir}"
     cd "${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
 fi
-# download checkpoint
-pip install google-cloud-storage==2.5.0
+# # download checkpoint
+printf "Downloading checkpoints..."
 python3 download_checkpoints.py
 
 
