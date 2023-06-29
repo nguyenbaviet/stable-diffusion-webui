@@ -19,5 +19,5 @@ for blob in blobs:
     print(f"downloading {filename}")
     blob.download_to_filename(os.path.join(des_dir, filename))
 # cp weight to Lora extensions
-os.makedirs("extensions/sd-webui-additional-networks/models", exist_ok=True)
-os.system("cp -r models/Lora extensions/sd-webui-additional-networks/models")
+os.makedirs("/stable-diffusion-webui/extensions/sd-webui-additional-networks/models", exist_ok=True)
+os.system("cp -r /stable-diffusion-webui/models/Lora /stable-diffusion-webui/extensions/sd-webui-additional-networks/models")
